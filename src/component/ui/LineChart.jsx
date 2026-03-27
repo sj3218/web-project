@@ -19,8 +19,8 @@ function LineChart({data})
     )
   );
 
-  const width = 400;
-  const height = 200;
+  const width = 600;
+  const height = 300;
   const padding = 40;
 
   const getX = (i) => padding + (i * (width - padding * 2)) / (data.length - 1);
