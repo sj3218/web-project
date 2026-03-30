@@ -8,6 +8,8 @@ import {
 import styled from "styled-components";
 
 import MainPage from './component/page/MainPage';
+import InputSamplePage from "./component/page/InputSamplePage";
+import UserListPage from "./component/page/UserListPage";
 
 const MainTitleText = styled.p`
   font-size: 24px;
@@ -63,12 +65,16 @@ function AppLayout(){
       <SidebarContainer open={open}>
         <h3>메뉴</h3>
         <div onClick={() => { navigate('/'); setOpen(false); }}>홈</div>
+        <div onClick={() => { navigate('/input-sample-page'); setOpen(false); }}>Input Sample</div>
+        <div onClick={() => { navigate('/user-list-page'); setOpen(false); }}>User List Sample</div>
       </SidebarContainer>
 
       {/* 메인 콘텐츠 */}
       <Content>
         <Routes>
           <Route index element={<MainPage />} />
+          <Route path="input-sample-page" element={<InputSamplePage />} />
+          <Route path="user-list-page" element={<UserListPage />} />
         </Routes>
       </Content>
     </>
