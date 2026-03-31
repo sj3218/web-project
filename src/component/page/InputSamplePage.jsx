@@ -5,7 +5,9 @@ function InputSamplePage() {
     name: '',
     nickname: ''
   });
-  const nameInput = useRef();
+  const nameInput = useRef(); //컴포넌트에서 특정 DOM을 선택해야 할때, ref를 사용
+                              //useRef Hook은 DOM을 선택하는 용도 이외에도, 
+                              //컴포넌트 안에서 조회 및 수정 할 수 있는 변수를 관리함
 
   const { name, nickname } = inputs; // 비구조화 할당을 통해 값 추출
 
