@@ -1,19 +1,13 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import classNames from 'classnames';
+import '../../styles/Button.scss';
 
-const StyledButton = styled.button
-`
-padding: 8px 16px;
-font-size: 16px;
-border-width: 1px;
-border-radius: 8px;
-cursor: pointer;
-`;
-
-function Button(props)
-{
-    const {title, onClick} = props;
-    return <StyledButton onClick={onClick}>{title || "button"}</StyledButton>;
+function Button({ children, size }) {
+    return <button className={classNames('Button', size)}>{children}</button>;
 }
+
+Button.defaultProps = {
+    size: 'medium',
+};
 
 export default Button;
