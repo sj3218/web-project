@@ -1,89 +1,27 @@
-import React, { createContext, useReducer, useContext } from 'react';
-import createAsyncDispatcher, {
-    createAsyncHandler,
-    initialAsyncState,
-} from './asyncActionUtils';
-import * as api from './api';
+import React, { createContext, useReducer, useContext } from "react";
+import createAsyncDispatcher, { createAsyncHandler, initialAsyncState } from "./asyncActionUtils";
+import * as api from "./api";
 
 const initialState = {
-    users: initialAsyncState,
-    user: initialAsyncState,
+	users: initialAsyncState,
+	user: initialAsyncState,
 };
 
-// //로딩 중일 때 바뀔 상태
-// const loadingState = {
-//     loading: true,
-//     data: null,
-//     error: null,
-// };
-
-// //성공시 만들어 줄 상태
-// const success = (data) => ({
-//     loading: false,
-//     data,
-//     error: null,
-// });
-
-// //실패 시 만들어 줄 상태
-// const error = (error) => ({
-//     loading: false,
-//     data: null,
-//     error: error,
-// });
-
-// //위에서 만든 객체/ 유틸 함수들을 사용하여 reducer 작성
-// function usersReducer(state, action) {
-//     switch (action.type) {
-//         case 'GET_USERS':
-//             return {
-//                 ...state,
-//                 users: loadingState,
-//             };
-//         case 'GET_USERS_SUCCESS':
-//             return {
-//                 ...state,
-//                 users: success(action.data),
-//             };
-//         case 'GET_USERS_ERROR':
-//             return {
-//                 ...state,
-//                 users: error(action.error),
-//             };
-//         case 'GET_USER':
-//             return {
-//                 ...state,
-//                 user: loadingState,
-//             };
-//         case 'GET_USER_SUCCESS':
-//             return {
-//                 ...state,
-//                 user: success(action.data),
-//             };
-//         case 'GET_USER_ERROR':
-//             return {
-//                 ...state,
-//                 users: error(action.error),
-//             };
-//         default:
-//             throw new Error(`Unhanded action type: ${action.type}`);
-//     }
-// }
-
-const usersHandler = createAsyncHandler('GET_USERS', 'users');
-const userHandler = createAsyncHandler('GET_USER', 'user');
+const usersHandler = createAsyncHandler("GET_USERS", "users");
+const userHandler = createAsyncHandler("GET_USER", "user");
 function usersReducer(state, action) {
-    switch (action.type) {
-        case 'GET_USERS':
-        case 'GET_USERS_SUCCESS':
-        case 'GET_USERS_ERROR':
-            return usersHandler(state, action);
-        case 'GET_USER':
-        case 'GET_USER_SUCCESS':
-        case 'GET_USER_ERROR':
-            return userHandler(state, action);
-        default:
-            throw new Error(`Unhanded action type: ${action.type}`);
-    }
+	switch (action.type) {
+		case "GET_USERS":
+		case "GET_USERS_SUCCESS":
+		case "GET_USERS_ERROR":
+			return usersHandler(state, action);
+		case "GET_USER":
+		case "GET_USER_SUCCESS":
+		case "GET_USER_ERROR":
+			return userHandler(state, action);
+		default:
+			throw new Error(`Unhanded action type: ${action.type}`);
+	}
 }
 
 //context는 전역변수처럼 공유되는 데이터
@@ -94,30 +32,28 @@ const UsersStateContext = createContext(null);
 const UsersDispatchContext = createContext(null);
 
 export function UsersProvider({ children }) {
-    const [state, dispatch] = useReducer(usersReducer, initialState);
-    return (
-        <UsersStateContext.Provider value={state}>
-            <UsersDispatchContext.Provider value={dispatch}>
-                {children}
-            </UsersDispatchContext.Provider>
-        </UsersStateContext.Provider>
-    );
+	const [state, dispatch] = useReducer(usersReducer, initialState);
+	return (
+		<UsersStateContext.Provider value={state}>
+			<UsersDispatchContext.Provider value={dispatch}>{children}</UsersDispatchContext.Provider>
+		</UsersStateContext.Provider>
+	);
 }
 
 export function useUsersState() {
-    const state = useContext(UsersStateContext);
-    if (!state) {
-        throw new Error('Cannot find UsersProvider');
-    }
-    return state;
+	const state = useContext(UsersStateContext);
+	if (!state) {
+		throw new Error("Cannot find UsersProvider");
+	}
+	return state;
 }
 
 export function useUsersDispatch() {
-    const dispatch = useContext(UsersDispatchContext);
-    if (!dispatch) {
-        throw new Error('Cannot find UsersProvider');
-    }
-    return dispatch;
+	const dispatch = useContext(UsersDispatchContext);
+	if (!dispatch) {
+		throw new Error("Cannot find UsersProvider");
+	}
+	return dispatch;
 }
 
 // export async function getUsers(dispatch) {
@@ -143,5 +79,5 @@ export function useUsersDispatch() {
 //         dispatch({ type: 'GET_USER_ERROR', error: e });
 //     }
 // }
-export const getUsers = createAsyncDispatcher('GET_USERS', api.getUsers);
-export const getUser = createAsyncDispatcher('GET_USER', api.getUser);
+export const getUsers = createAsyncDispatcher("GET_USERS", api.getUsers);
+export const getUser = createAsyncDispatcher("GET_USER", api.getUser);

@@ -1,6 +1,4 @@
 import React, { useEffect } from 'react';
-import axios from 'axios';
-import useAsync from './useAsync';
 import { getUser, useUsersDispatch, useUsersState } from './UsersContext';
 
 function User({ id }) {

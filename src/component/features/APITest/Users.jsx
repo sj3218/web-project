@@ -1,6 +1,4 @@
 import React, { useState } from 'react';
-import axios from 'axios';
-import useAsync from './useAsync';
 import User from './User';
 import { getUsers, useUsersDispatch, useUsersState } from './UsersContext';
 
@@ -14,36 +12,6 @@ function Users() {
     const fetchData = () => {
         getUsers(dispatch);
     };
-
-    //const { loading, data: users, error } = state; //state.data를 users 키워드로 조회
-
-    // const [state, dispatch] = useReducer(reducer, {
-    //     loading: false,
-    //     data: null,
-    //     error: null,
-    // });
-    // const [users, setUsers] = useState(null);
-    // const [loading, setLoading] = useState(false);
-    // const [error, setError] = useState(null);
-
-    /*
-    const fetchUsers = async () => {
-        try {
-            // 요청이 시작 할 때에는 error 와 users 를 초기화하고
-            setError(null);
-            setUsers(null);
-            // loading 상태를 true 로 바꿉니다.
-            setLoading(true);
-            const response = await axios.get(
-                'https://jsonplaceholder.typicode.com/users'
-                //'https://jsonplaceholder.typicode.com/users/showmeerror' //error
-            );
-            setUsers(response.data); // 데이터는 response.data 안에 들어있습니다.
-        } catch (e) {
-            setError(e);
-        }
-        setLoading(false);
-    };*/
 
     if (loading) return <div>로딩중..</div>;
     if (error) return <div>에러가 발생했습니다</div>;
@@ -72,3 +40,33 @@ function Users() {
 }
 
 export default Users;
+
+//const { loading, data: users, error } = state; //state.data를 users 키워드로 조회
+
+// const [state, dispatch] = useReducer(reducer, {
+//     loading: false,
+//     data: null,
+//     error: null,
+// });
+// const [users, setUsers] = useState(null);
+// const [loading, setLoading] = useState(false);
+// const [error, setError] = useState(null);
+
+/*
+    const fetchUsers = async () => {
+        try {
+            // 요청이 시작 할 때에는 error 와 users 를 초기화하고
+            setError(null);
+            setUsers(null);
+            // loading 상태를 true 로 바꿉니다.
+            setLoading(true);
+            const response = await axios.get(
+                'https://jsonplaceholder.typicode.com/users'
+                //'https://jsonplaceholder.typicode.com/users/showmeerror' //error
+            );
+            setUsers(response.data); // 데이터는 response.data 안에 들어있습니다.
+        } catch (e) {
+            setError(e);
+        }
+        setLoading(false);
+    };*/
