@@ -1,7 +1,5 @@
 import React from "react";
 import styled from "styled-components";
-import DoughnutChart from "../../ui/DoughnutChart";
-import { Chart } from "chart.js";
 import CustomDoughnutChart from "./CustomDoughnutChart";
 
 const Card = styled.div`
@@ -10,7 +8,7 @@ const Card = styled.div`
 	padding: 24px;
 	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
 
-	width: 400px;
+	width: 500px;
 	max-width: 500px;
 	aspect-ratio: 1;
 
