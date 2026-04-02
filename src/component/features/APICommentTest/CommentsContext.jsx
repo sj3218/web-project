@@ -89,3 +89,13 @@ export async function getComments(dispatch) {
 		dispatch({ type: "GET_COMMENTS_ERROR", error: e });
 	}
 }
+
+export async function getCommentsByPostId(dispatch, postId) {
+	dispatch({ type: "GET_COMMENTS" });
+	try {
+		const response = await axios.get(`https://jsonplaceholder.typicode.com/comments?postId=${postId}`);
+		dispatch({ type: "GET_COMMENTS_SUCCESS", data: response.data });
+	} catch (e) {
+		dispatch({ type: "GET_COMMENTS_ERROR", error: e });
+	}
+}
