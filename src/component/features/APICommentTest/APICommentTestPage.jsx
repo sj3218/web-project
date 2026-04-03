@@ -18,6 +18,9 @@ const StatCardsRow = styled.div`
 	height: 100%;
 	align-items: stretch;
 	justify-items: center;
+	@media (max-width: 600px) {
+		grid-template-columns: 1fr 1fr;
+	}
 	@media (max-width: 1200px) {
 		grid-template-columns: 1fr;
 	}
