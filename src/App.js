@@ -13,6 +13,8 @@ import Users from "./component/features/APITest/Users";
 import UserPage from "./component/features/APITest/UserPage";
 import APICommentTestPage from "./component/features/APICommentTest/APICommentTestPage";
 import DashboardPage from "./component/features/DashboardPage/DashboardPage";
+import LoginTestPage from "./component/page/LoginTestPage";
+import ArrayAPIPage from "./component/features/ArrayAPI/ArrayAPIPage";
 
 const MainTitleText = styled.p`
 	font-size: 24px;
@@ -154,6 +156,22 @@ function AppLayout() {
 					>
 						Dashboard
 					</div>
+					<div
+						onClick={() => {
+							navigate("/login-test-page");
+							setOpen(false);
+						}}
+					>
+						Login Test
+					</div>
+					<div
+						onClick={() => {
+							navigate("/array-api-test-page");
+							setOpen(false);
+						}}
+					>
+						Array API Test
+					</div>
 				</SidebarContainer>
 
 				{/* 메인 콘텐츠 */}
@@ -170,6 +188,8 @@ function AppLayout() {
 						<Route path="api-comment-test-page" element={<APICommentTestPage />} />
 						<Route path="study-page" element={<StudyPage />} />
 						<Route path="dashboard-page" element={<DashboardPage />} />
+						<Route path="login-test-page" element={<LoginTestPage />} />
+						<Route path="array-api-test-page" element={<ArrayAPIPage />} />
 					</Routes>
 				</Content>
 			</div>
