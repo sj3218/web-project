@@ -37,7 +37,7 @@ function ArrayAPIPage() {
 
 	//3. map: Array의 각 요소를 대문자로 변환하여 출력
 	const handlerMap = () => {
-		let tempResult = array.map((item) => {
+		const tempResult = array.map((item) => {
 			return item.toUpperCase();
 		});
 		setResult(tempResult.join(", "));
@@ -45,8 +45,10 @@ function ArrayAPIPage() {
 
 	//4. reduce: 각 아이템을 쉼표로 구분하여 출력 (축적되는 형태)
 	const handlerReduce = () => {
-		//const tempResult = array.reduce();
-		//setResult(tempResult.join(", "));
+		const tempResult = array.reduce((accumulator, current) => {
+			return `${accumulator}, ${current}`;
+		});
+		setResult(tempResult);
 	};
 
 	//5. push: input 태그에 입력한 값을 배열 끝에 추가하여 출력
@@ -90,20 +92,70 @@ function ArrayAPIPage() {
 
 	// 10. includes: 원본배열이 input에 입력한 값과 일치하는 정확한 과일명을 가지고있는 경우 true 출력, 그 외의 경우 false 출력
 	const handlerIncludes = () => {
-		//array.includes
+		const tempResult = array.includes(query);
+		setResult(tempResult.toString());
 	};
 
 	// 11. find: 원본배열이 input에 입력한 값을 포함하는 과일명을 가지고있는 경우 과일명을 출력, 그 외의 경우 "Not Found"를 출력
-	const handlerFind = () => {};
+	const handlerFind = () => {
+		if (!query) {
+			alert("값 없다");
+			return false;
+		}
+
+		const tempResult = array.find((fruit) => {
+			return fruit.includes(query);
+		});
+
+		if (tempResult) {
+			setResult(tempResult);
+		} else {
+			setResult("Not Found");
+		}
+	};
 
 	// 12. some: 원본배열이 input에 입력한 값을 포함하는 과일명을 가지고있는 경우 true을 출력, 그 외의 경우 false 를 출력
-	const handlerSome = () => {};
+	const handlerSome = () => {
+		if (!query) {
+			alert("no input");
+			return false;
+		}
+
+		const tempResult = array.some((fruit) => {
+			return fruit.includes(query);
+		});
+
+		setResult(tempResult.toString());
+	};
 
 	// 13. every: 모든 과일명이 5글자를 초과하는 경우 true를 출력, 그 외의 경우 false를 출력
-	const handlerEvery = () => {};
+	const handlerEvery = () => {
+		const tempResult = array.every((fruit) => {
+			return fruit.length > 5;
+		});
+
+		setResult(tempResult.toString());
+	};
 
 	// 14. sort: 알파벳 내림차순 정렬 후 리스트 명을 ", "로 구분하여 출력
-	const handlerSort = () => {};
+	// 오름차순 정렬
+	//arr.sort((a, b) =>  a - b);
+
+	// 내림차순 정렬
+	//arr.sort((a, b) =>  b - a));
+
+	// 	* return 값
+	//  ' - 1 ' :  FirstString 이 SecondString 보다 앞에 위치.
+	//   ' 0 '  : FirstString 과 SecondString 이 같음.
+	//   ' 1 '  : FirstString 이 SecondString 보다 뒤에 위치.
+
+	const handlerSort = () => {
+		const tempResult = [...array];
+		tempResult.sort((a, b) => {
+			return b.localeCompare(a);
+		});
+		setResult(tempResult.join(", "));
+	};
 
 	// 15. join: 배열의 모든 요소를 쉼표(", ")로 구분하고 결합된 문자열을 출력
 	const handlerJoin = () => {
@@ -149,6 +201,8 @@ function ArrayAPIPage() {
 
 			{/* show array */}
 			<div>
+				{/* array = std::vector<std::string> */}
+				{/* result = std::string, therefore, result cannot use join function */}
 				<div>Origin: {array.join(", ")}</div>
 				<div>Result: {result}</div>
 			</div>

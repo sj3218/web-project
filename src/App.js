@@ -15,6 +15,7 @@ import APICommentTestPage from "./component/features/APICommentTest/APICommentTe
 import DashboardPage from "./component/features/DashboardPage/DashboardPage";
 import LoginTestPage from "./component/page/LoginTestPage";
 import ArrayAPIPage from "./component/features/ArrayAPI/ArrayAPIPage";
+import TodoListTestPage from "./component/features/TodoListTest/TodoListTestPage";
 
 const MainTitleText = styled.p`
 	font-size: 24px;
@@ -116,14 +117,7 @@ function AppLayout() {
 					>
 						Button
 					</div>
-					<div
-						onClick={() => {
-							navigate("/todolist-page");
-							setOpen(false);
-						}}
-					>
-						TodoList
-					</div>
+
 					<div
 						onClick={() => {
 							navigate("/api-test-page");
@@ -172,6 +166,14 @@ function AppLayout() {
 					>
 						Array API Test
 					</div>
+					<div
+						onClick={() => {
+							navigate("/todolist-page");
+							setOpen(false);
+						}}
+					>
+						TodoList
+					</div>
 				</SidebarContainer>
 
 				{/* 메인 콘텐츠 */}
@@ -183,13 +185,13 @@ function AppLayout() {
 						<Route path="user-list-page" element={<UserListPage />} />
 						<Route path="counter-page" element={<CounterPage />} />
 						<Route path="button-page" element={<ButtonPage />} />
-						<Route path="todolist-page" element={<TodoListPage />} />
 						<Route path="api-test-page" element={<UserPage />} />
 						<Route path="api-comment-test-page" element={<APICommentTestPage />} />
 						<Route path="study-page" element={<StudyPage />} />
 						<Route path="dashboard-page" element={<DashboardPage />} />
 						<Route path="login-test-page" element={<LoginTestPage />} />
 						<Route path="array-api-test-page" element={<ArrayAPIPage />} />
+						<Route path="todolist-page" element={<TodoListTestPage />} />
 					</Routes>
 				</Content>
 			</div>
